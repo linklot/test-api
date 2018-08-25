@@ -25,8 +25,7 @@ public class BracketsValidatorController {
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public BracketsValidationResponse validateBrackets(
-            @RequestParam @Size(min = 1, max = 50, message = "Must be between 1 and 50 chars long") final String input) {
+    public BracketsValidationResponse validateBrackets(@RequestParam final String input) {
         return bracketsValidationService.validateBrackets(input);
     }
 

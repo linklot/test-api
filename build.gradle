@@ -20,7 +20,10 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude group: 'org.springframework.boot', module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-undertow")
     compile("org.projectlombok:lombok:1.18.2")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
