@@ -1,0 +1,4 @@
+# Context root
+server:
+  servlet:
+    context-path: /test/1.0
