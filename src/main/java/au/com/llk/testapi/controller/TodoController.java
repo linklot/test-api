@@ -1,5 +1,6 @@
 package au.com.llk.testapi.controller;
 
+import static org.apache.logging.log4j.util.Strings.isNotBlank;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import au.com.llk.testapi.controller.payload.AccessTodoItemResponse;
@@ -49,6 +50,7 @@ public class TodoController {
             @PathVariable @Size(min = 1, max = 50, message = "Must be between 1 and 50 chars long") final String id,
             @RequestBody final ModifyTodoRequest modifyTodoRequest) {
         validateId(id);
+        validateText(modifyTodoRequest.getText());
 
         val idValue = Long.parseLong(id);
         return todoListService.modifyTodoItem(idValue, modifyTodoRequest);
@@ -58,6 +60,12 @@ public class TodoController {
         val valid = id.matches("^[0-9]*");
         if (!valid) {
             throw new IllegalArgumentException("id must contain only digits");
+        }
+    }
+
+    private void validateText(String text) {
+        if(text != null && text.length() > 50) {
+            throw new IllegalArgumentException("Text must be less than 50 chars long");
         }
     }
 
