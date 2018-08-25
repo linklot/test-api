@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.validation.constraints.NotNull;
 import lombok.val;
 import org.springframework.stereotype.Repository;
@@ -15,15 +16,14 @@ import org.springframework.stereotype.Repository;
 public class SimpleTodoListDao implements TodoListDao {
 
     final List<TodoItem> TODO_LIST = new ArrayList<>();
-    private int nextIndex = 1;
+    private AtomicInteger nextIndex = new AtomicInteger(1);
 
     @Override
     public TodoItem createTodoItem(@NotNull String text) {
-        val item = TodoItem.builder().id(nextIndex).text(text).isCompleted(false).createdAt(getLocalDateTimeAsString())
-                .build();
+        val item = TodoItem.builder().id(nextIndex.getAndIncrement()).text(text).isCompleted(false)
+                .createdAt(getLocalDateTimeAsString()).build();
 
         TODO_LIST.add(item);
-        nextIndex++;
 
         return item;
     }
