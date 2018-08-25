@@ -4,11 +4,9 @@ import au.com.llk.testapi.dao.TodoListDao;
 import au.com.llk.testapi.model.TodoItem;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.validation.constraints.NotNull;
 import lombok.val;
@@ -44,11 +42,11 @@ public class SimpleTodoListDao implements TodoListDao {
         }
 
         val existingItem = opItem.get();
-        if(text != null) {
+        if (text != null) {
             existingItem.setText(text);
         }
 
-        if(isCompleted != null) {
+        if (isCompleted != null) {
             existingItem.setCompleted(isCompleted);
         }
 

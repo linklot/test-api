@@ -11,10 +11,10 @@ import lombok.Setter;
 public class TodoItem {
 
     private final long id;
+    private final String createdAt;
     @Setter
     private String text;
     @Setter
     private boolean isCompleted;
-    private final String createdAt;
 
 }

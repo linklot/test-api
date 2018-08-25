@@ -1,6 +1,5 @@
 package au.com.llk.testapi.controller;
 
-import static org.apache.logging.log4j.util.Strings.isNotBlank;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import au.com.llk.testapi.controller.payload.AccessTodoItemResponse;
@@ -64,7 +63,7 @@ public class TodoController {
     }
 
     private void validateText(String text) {
-        if(text != null && text.length() > 50) {
+        if (text != null && text.length() > 50) {
             throw new IllegalArgumentException("Text must be less than 50 chars long");
         }
     }

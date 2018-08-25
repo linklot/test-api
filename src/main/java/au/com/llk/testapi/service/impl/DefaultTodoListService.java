@@ -32,7 +32,7 @@ public class DefaultTodoListService implements TodoListService {
     public AccessTodoItemResponse retrieveTodoItem(long id) {
         val opItem = todoListDao.getTodoItemById(id);
 
-        if(!opItem.isPresent()) {
+        if (!opItem.isPresent()) {
             throwTodoItemNotFoundException(id);
         }
 
@@ -44,7 +44,7 @@ public class DefaultTodoListService implements TodoListService {
     public AccessTodoItemResponse modifyTodoItem(long id, @NotNull ModifyTodoRequest modifyTodoRequest) {
         val opItem = todoListDao.modifyTodoItem(id, modifyTodoRequest.getText(), modifyTodoRequest.getIsCompleted());
 
-        if(!opItem.isPresent()) {
+        if (!opItem.isPresent()) {
             throwTodoItemNotFoundException(id);
         }
 
