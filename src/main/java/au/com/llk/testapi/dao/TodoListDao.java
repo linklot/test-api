@@ -10,6 +10,6 @@ public interface TodoListDao {
 
     Optional<TodoItem> getTodoItemById(long id);
 
-    Optional<TodoItem> modifyTodoItem(long id, @NotNull String text, boolean isCompleted);
+    Optional<TodoItem> modifyTodoItem(long id, String text, Boolean isCompleted);
 
 }

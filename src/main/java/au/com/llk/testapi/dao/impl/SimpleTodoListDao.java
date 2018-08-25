@@ -36,7 +36,7 @@ public class SimpleTodoListDao implements TodoListDao {
     }
 
     @Override
-    public Optional<TodoItem> modifyTodoItem(long id, @NotNull String text, boolean isCompleted) {
+    public Optional<TodoItem> modifyTodoItem(long id, String text, Boolean isCompleted) {
         val opItem = TODO_LIST.stream().filter(item -> item.getId() == id).findFirst();
 
         if (!opItem.isPresent()) {
@@ -44,23 +44,15 @@ public class SimpleTodoListDao implements TodoListDao {
         }
 
         val existingItem = opItem.get();
-        val modifiedItem = TodoItem.builder().id(existingItem.getId()).text(text).isCompleted(isCompleted)
-                .createdAt(existingItem.getCreatedAt()).build();
-
-        int itemIdx = 0;
-        for (int i = 0; i < TODO_LIST.size(); i++) {
-            val todoItem = TODO_LIST.get(i);
-
-            if (todoItem.getId() == modifiedItem.getId()) {
-                itemIdx = i;
-                break;
-            }
+        if(text != null) {
+            existingItem.setText(text);
         }
 
-        TODO_LIST.remove(itemIdx);
-        TODO_LIST.add(itemIdx, modifiedItem);
+        if(isCompleted != null) {
+            existingItem.setCompleted(isCompleted);
+        }
 
-        return Optional.of(modifiedItem);
+        return Optional.of(existingItem);
     }
 
     private String getLocalDateTimeAsString() {

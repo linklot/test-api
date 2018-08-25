@@ -42,7 +42,7 @@ public class DefaultTodoListService implements TodoListService {
 
     @Override
     public AccessTodoItemResponse modifyTodoItem(long id, @NotNull ModifyTodoRequest modifyTodoRequest) {
-        val opItem = todoListDao.modifyTodoItem(id, modifyTodoRequest.getText(), modifyTodoRequest.isCompleted());
+        val opItem = todoListDao.modifyTodoItem(id, modifyTodoRequest.getText(), modifyTodoRequest.getIsCompleted());
 
         if(!opItem.isPresent()) {
             throwTodoItemNotFoundException(id);

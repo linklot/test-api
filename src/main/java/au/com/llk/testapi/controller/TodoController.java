@@ -47,7 +47,7 @@ public class TodoController {
     @PatchMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public AccessTodoItemResponse modifyTodoItem(
             @PathVariable @Size(min = 1, max = 50, message = "Must be between 1 and 50 chars long") final String id,
-            @RequestBody @Validated final ModifyTodoRequest modifyTodoRequest) {
+            @RequestBody final ModifyTodoRequest modifyTodoRequest) {
         validateId(id);
 
         val idValue = Long.parseLong(id);
