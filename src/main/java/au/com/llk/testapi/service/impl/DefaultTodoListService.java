@@ -29,7 +29,7 @@ public class DefaultTodoListService implements TodoListService {
     }
 
     @Override
-    public AccessTodoItemResponse retrieveTodoItem(int id) {
+    public AccessTodoItemResponse retrieveTodoItem(long id) {
         val opItem = todoListDao.getTodoItemById(id);
 
         if(!opItem.isPresent()) {
@@ -41,7 +41,7 @@ public class DefaultTodoListService implements TodoListService {
     }
 
     @Override
-    public AccessTodoItemResponse modifyTodoItem(int id, @NotNull ModifyTodoRequest modifyTodoRequest) {
+    public AccessTodoItemResponse modifyTodoItem(long id, @NotNull ModifyTodoRequest modifyTodoRequest) {
         val opItem = todoListDao.modifyTodoItem(id, modifyTodoRequest.getText(), modifyTodoRequest.isCompleted());
 
         if(!opItem.isPresent()) {
@@ -52,7 +52,7 @@ public class DefaultTodoListService implements TodoListService {
         return new AccessTodoItemResponse(item.getId(), item.getText(), item.isCompleted(), item.getCreatedAt());
     }
 
-    private void throwTodoItemNotFoundException(int id) {
+    private void throwTodoItemNotFoundException(long id) {
         String msg = String.format("Item with %s not found", id);
         throw new TodoItemNotFoundException(msg);
     }

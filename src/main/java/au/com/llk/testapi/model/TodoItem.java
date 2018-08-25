@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 public class TodoItem {
 
-    private final int id;
+    private final long id;
     @Setter
     private String text;
     @Setter

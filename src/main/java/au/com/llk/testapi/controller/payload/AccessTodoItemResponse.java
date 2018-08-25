@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 public class AccessTodoItemResponse {
 
     @JsonProperty("id")
-    public final int id;
+    public final long id;
     @JsonProperty("text")
     public final String text;
     @JsonProperty("isCompleted")
@@ -17,7 +17,7 @@ public class AccessTodoItemResponse {
     public final String createdAt;
 
     @JsonCreator
-    public AccessTodoItemResponse(@JsonProperty("id") int id, @JsonProperty("text") String text,
+    public AccessTodoItemResponse(@JsonProperty("id") long id, @JsonProperty("text") String text,
             @JsonProperty("isCompleted") boolean isCompleted, @JsonProperty("createdAt") String createdAt) {
         this.id = id;
         this.text = text;

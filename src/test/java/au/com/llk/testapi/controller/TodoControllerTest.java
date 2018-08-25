@@ -54,7 +54,7 @@ public class TodoControllerTest extends AbstractControllerTest {
     @Test
     public void retrieveTodoItemShouldReturn() throws Exception {
         val mockResp = givenCreateItemResp();
-        when(todoListService.retrieveTodoItem(1)).thenReturn(mockResp);
+        when(todoListService.retrieveTodoItem(1L)).thenReturn(mockResp);
 
         val requestBuilder = MockMvcRequestBuilders.get("/todo/1");
         val mvcResult = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
@@ -79,7 +79,7 @@ public class TodoControllerTest extends AbstractControllerTest {
     public void modifyTodoItemShouldSucceed() throws Exception {
         val mockResp = givenCreateItemResp();
         val modifyRequest = new ModifyTodoRequest("test text", true);
-        when(todoListService.modifyTodoItem(1, modifyRequest)).thenReturn(mockResp);
+        when(todoListService.modifyTodoItem(1L, modifyRequest)).thenReturn(mockResp);
 
         val requestBuilder = MockMvcRequestBuilders.patch("/todo/1").contentType("application/json")
                 .content(giveModifyItemCotent());
@@ -94,7 +94,7 @@ public class TodoControllerTest extends AbstractControllerTest {
     @Test
     public void modifyTodoItemShouldThrowException() throws Exception {
         doThrow(new TodoItemNotFoundException("msg")).when(todoListService)
-                .modifyTodoItem(eq(1), any(ModifyTodoRequest.class));
+                .modifyTodoItem(eq(1L), any(ModifyTodoRequest.class));
 
         val requestBuilder = MockMvcRequestBuilders.patch("/todo/1").contentType("application/json")
                 .content(giveModifyItemCotent());
@@ -113,6 +113,6 @@ public class TodoControllerTest extends AbstractControllerTest {
     }
 
     private AccessTodoItemResponse givenCreateItemResp() {
-        return new AccessTodoItemResponse(1, TEST_INPUT, false, "createdAt");
+        return new AccessTodoItemResponse(1L, TEST_INPUT, false, "createdAt");
     }
 }

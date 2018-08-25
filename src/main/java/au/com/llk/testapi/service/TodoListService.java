@@ -8,8 +8,8 @@ public interface TodoListService {
 
     AccessTodoItemResponse createTodoItem(@NotNull String text);
 
-    AccessTodoItemResponse retrieveTodoItem(int id);
+    AccessTodoItemResponse retrieveTodoItem(long id);
 
-    AccessTodoItemResponse modifyTodoItem(int id, @NotNull ModifyTodoRequest modifyTodoRequest);
+    AccessTodoItemResponse modifyTodoItem(long id, @NotNull ModifyTodoRequest modifyTodoRequest);
 
 }

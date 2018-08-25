@@ -5,9 +5,11 @@ import au.com.llk.testapi.model.TodoItem;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import javax.validation.constraints.NotNull;
 import lombok.val;
 import org.springframework.stereotype.Repository;
@@ -15,8 +17,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SimpleTodoListDao implements TodoListDao {
 
-    final List<TodoItem> TODO_LIST = new ArrayList<>();
-    private AtomicInteger nextIndex = new AtomicInteger(1);
+    final List<TodoItem> TODO_LIST = new LinkedList<>();
+    private AtomicLong nextIndex = new AtomicLong(1);
 
     @Override
     public TodoItem createTodoItem(@NotNull String text) {
@@ -29,12 +31,12 @@ public class SimpleTodoListDao implements TodoListDao {
     }
 
     @Override
-    public Optional<TodoItem> getTodoItemById(int id) {
+    public Optional<TodoItem> getTodoItemById(long id) {
         return TODO_LIST.stream().filter(item -> item.getId() == id).findFirst();
     }
 
     @Override
-    public Optional<TodoItem> modifyTodoItem(int id, @NotNull String text, boolean isCompleted) {
+    public Optional<TodoItem> modifyTodoItem(long id, @NotNull String text, boolean isCompleted) {
         val opItem = TODO_LIST.stream().filter(item -> item.getId() == id).findFirst();
 
         if (!opItem.isPresent()) {

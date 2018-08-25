@@ -8,8 +8,8 @@ public interface TodoListDao {
 
     TodoItem createTodoItem(@NotNull String text);
 
-    Optional<TodoItem> getTodoItemById(int id);
+    Optional<TodoItem> getTodoItemById(long id);
 
-    Optional<TodoItem> modifyTodoItem(int id, @NotNull String text, boolean isCompleted);
+    Optional<TodoItem> modifyTodoItem(long id, @NotNull String text, boolean isCompleted);
 
 }

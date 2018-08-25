@@ -40,7 +40,7 @@ public class TodoController {
             @PathVariable @Size(min = 1, max = 50, message = "Must be between 1 and 50 chars long") final String id) {
         validateId(id);
 
-        val idValue = Integer.parseInt(id);
+        val idValue = Long.parseLong(id);
         return todoListService.retrieveTodoItem(idValue);
     }
 
@@ -50,13 +50,12 @@ public class TodoController {
             @RequestBody @Validated final ModifyTodoRequest modifyTodoRequest) {
         validateId(id);
 
-        val idValue = Integer.parseInt(id);
-
+        val idValue = Long.parseLong(id);
         return todoListService.modifyTodoItem(idValue, modifyTodoRequest);
     }
 
     private void validateId(final String id) {
-        val valid = id.matches("[0-9]*");
+        val valid = id.matches("^[0-9]*");
         if (!valid) {
             throw new IllegalArgumentException("id must contain only digits");
         }
