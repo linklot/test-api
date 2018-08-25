@@ -26,7 +26,7 @@ public class SimpleTodoListDaoTest {
         val item = testTarget.createTodoItem(TEXT);
 
         assertEquals(1, testTarget.TODO_LIST.size());
-        assertEquals(item, testTarget.TODO_LIST.get(0));
+        assertEquals(item, testTarget.TODO_LIST.toArray()[0]);
 
         assertEquals(1, item.getId());
         assertEquals(TEXT, item.getText());
@@ -63,6 +63,6 @@ public class SimpleTodoListDaoTest {
         assertTrue(item.getCreatedAt().length() > 0);
 
         assertEquals(3, testTarget.TODO_LIST.size());
-        assertEquals(item, testTarget.TODO_LIST.get(1));
+        assertEquals(item, testTarget.TODO_LIST.toArray()[1]);
     }
 }

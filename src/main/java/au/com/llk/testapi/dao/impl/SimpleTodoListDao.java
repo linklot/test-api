@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.validation.constraints.NotNull;
 import lombok.val;
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SimpleTodoListDao implements TodoListDao {
 
-    final List<TodoItem> TODO_LIST = new LinkedList<>();
+    final Queue<TodoItem> TODO_LIST = new ConcurrentLinkedQueue<>();
     private AtomicLong nextIndex = new AtomicLong(1);
 
     @Override
